@@ -1,9 +1,8 @@
-int cardPadding = 1;
+int cardPadding = 20;
 float cardWidth;
 float cardHeight;
 int textSize = 60;
-
-Card card = new Card(36,"yellow");
+Card[] playerHand = {new Card(1, "red"), new Card(3, "yellow")};
 void setup() {
   size(1200,800);
   frameRate(60);
@@ -16,5 +15,5 @@ void setup() {
 }
 
 void draw() {
-  card.drawCard(100,100);
+  drawHand(playerHand);
 }
