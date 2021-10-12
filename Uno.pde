@@ -2,7 +2,7 @@ int cardPadding = 20;
 float cardWidth;
 float cardHeight;
 int textSize = 60;
-Card[] playerHand = {new Card(1, "red"), new Card(3, "yellow")};
+Card[] playerHand = generateHand();
 void setup() {
   size(1200,800);
   frameRate(60);
