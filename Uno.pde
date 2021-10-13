@@ -17,6 +17,7 @@ void setup() {
 }
 
 void draw() {
+  cardNo = playerHand.length;
   background(255);
   drawHand(playerHand);
   fill(200);

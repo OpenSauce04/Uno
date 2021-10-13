@@ -24,7 +24,11 @@ class Card {
     rect(x, y, cardWidth, cardHeight, 15);
     fill(255, 255, 255);
     stroke(255);
-    ellipse(x+10, y+10, cardWidth-20, cardHeight-20);
+    pushMatrix();
+    translate(x+42, y+10);
+    shearX(-PI/10.0);
+    ellipse(0, 0, cardWidth-20, cardHeight-20);
+    popMatrix();
     fill(0);
     text(number, x + (cardWidth/2), y + (cardHeight/2) + (textSize/4));
   }
