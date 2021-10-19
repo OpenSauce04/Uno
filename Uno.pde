@@ -11,6 +11,8 @@ void setup() {
   ellipseMode(CORNER);
   textAlign(CENTER);
   textSize(textSize);
+  
+  placedCard.dontScale = true;
 }
 
 void draw() {
@@ -22,7 +24,7 @@ void draw() {
   drawHand(playerHand);
   fill(200);
   stroke(0);
-  placedCard.drawCard(int(width/2 - cardWidth/2), int(height/2 - cardHeight/2));
+  placedCard.drawCard(int(width/2 - (width/7 - cardPadding)), int(height/2 - ((width/7 - cardPadding)*1.4)/2));
 }
 
 void keyReleased() {
@@ -30,6 +32,7 @@ void keyReleased() {
     int(str(key));
     if ( (playerHand.get(int(str(key))-1).colour == placedCard.colour) || (playerHand.get(int(str(key))-1).number == placedCard.number) ) {
       placedCard = playerHand.get(int(str(key))-1);
+      placedCard.dontScale = true;
       playerHand.remove(int(str(key))-1);
     }
   } catch(Exception e) {print(e);}
