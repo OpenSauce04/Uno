@@ -1,6 +1,6 @@
 int cardPadding = 20;
-float cardWidth;
-float cardHeight;
+float cardWidth, cardHeight, defaultCardWidth, defaultCardHeight;
+float t;
 int cardNo;
 int textSize = 60;
 Card placedCard = generateCard();
@@ -12,6 +12,8 @@ void setup() {
   textAlign(CENTER);
   textSize(textSize);
   
+  defaultCardWidth = width/max(cardNo, 7) - cardPadding;
+  defaultCardHeight = defaultCardWidth * 1.4;
   placedCard.dontScale = true;
 }
 
@@ -24,7 +26,7 @@ void draw() {
   drawHand(playerHand);
   fill(200);
   stroke(0);
-  placedCard.drawCard(int(width/2 - (width/7 - cardPadding)), int(height/2 - ((width/7 - cardPadding)*1.4)/2));
+  placedCard.drawCard(int(width/2 - defaultCardWidth/2), int(height/2 - defaultCardHeight/2));
 }
 
 void keyReleased() {
