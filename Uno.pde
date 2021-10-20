@@ -47,6 +47,17 @@ void keyReleased() {
     }
   } catch(Exception e) {print(e);}
   if (key==' ') {
-    playerHand.add(generateCard());
+    switch(cardNo) {
+      case 9:
+        playerHand.add(generateCard());
+        // Draw guarenteed placeable card
+        break;
+      case 10:
+        // Draw no card
+        break;
+      default:
+        // Draw card normally
+        playerHand.add(generateCard());
+    }
   }
 }
