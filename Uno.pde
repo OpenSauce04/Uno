@@ -32,10 +32,18 @@ void draw() {
 void keyReleased() {
   try {
     int(str(key));
-    if ( (playerHand.get(int(str(key))-1).colour == placedCard.colour) || (playerHand.get(int(str(key))-1).number == placedCard.number) ) {
-      placedCard = playerHand.get(int(str(key))-1);
-      placedCard.dontScale = true;
-      playerHand.remove(int(str(key))-1);
+    if (int(str(key)) != 0) {
+      if ( (playerHand.get(int(str(key))-1).colour == placedCard.colour) || (playerHand.get(int(str(key))-1).number == placedCard.number) ) {
+        placedCard = playerHand.get(int(str(key))-1);
+        placedCard.dontScale = true;
+        playerHand.remove(int(str(key))-1);
+      }
+    } else { // 0 key = 10th card
+      if ( (playerHand.get(10-1).colour == placedCard.colour) || (playerHand.get(10-1).number == placedCard.number) ) {
+        placedCard = playerHand.get(10-1); // 10-1 is just being used for readability
+        placedCard.dontScale = true;
+        playerHand.remove(10-1);
+      }
     }
   } catch(Exception e) {print(e);}
   if (key==' ') {
