@@ -49,8 +49,9 @@ void keyReleased() {
   if (key==' ') {
     switch(cardNo) {
       case 9:
-        playerHand.add(generateCard());
         // Draw guarenteed placeable card
+        playerHand.add(generateCard());
+        playerHand.get(9).colour = placedCard.colour;
         break;
       case 10:
         // Draw no card
