@@ -49,6 +49,7 @@ void keyReleased() {
           placedCard = playerHand.get(int(str(key))-1);
           placedCard.dontScale = true;
           playerHand.remove(int(str(key))-1);
+          botPlay();
         }
       } else { // 0 key = 10th card
         if (key!=' ') {
