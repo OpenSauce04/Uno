@@ -7,6 +7,7 @@ Card placedCard = generateCard();
 ArrayList<Card> playerHand = generateHand();
 ArrayList<Card> botHand = generateHand();
 boolean win = false;
+boolean lose = false;
 void setup() {
   size(1200, 800, P2D);
   frameRate(60);
@@ -28,20 +29,31 @@ void draw() {
   drawHand(playerHand);
   fill(200);
   stroke(0);
-  if (cardNo != 0) {
-    placedCard.drawCard(int(width/2 - defaultCardWidth/2), int(height/2 - defaultCardHeight/2));
+  if (botHand.size()==0) {
+    lose = true;
+  }
+  if ((cardNo != 0)) {
+    if (!lose) {
+      placedCard.drawCard(int(width/2 - defaultCardWidth/2), int(height/2 - defaultCardHeight/2));
+    }
   } else {
     win = true;
   }
+  
 
-  if (win) {
+  if (win && !lose) {
     fill(0);
     text("You Win!", width/2, height/2);
+  } else {
+    if (lose) {
+      fill(150, 0, 0);
+      text("You Lose!", width/2, height/2);
+    }
   }
 }
 
 void keyReleased() {
-  if (!win) {
+  if (!win && !lose) {
     try {
       int(str(key));
       if (int(str(key)) != 0) {
@@ -82,6 +94,9 @@ void keyReleased() {
     }
     if (key=='`') {
       playerHand.remove(0);
+    }
+    if (key=='#') {
+      botHand.remove(0);
     }
   }
 }
