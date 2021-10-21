@@ -39,10 +39,12 @@ void keyReleased() {
         playerHand.remove(int(str(key))-1);
       }
     } else { // 0 key = 10th card
-      if ( (playerHand.get(10-1).colour == placedCard.colour) || (playerHand.get(10-1).number == placedCard.number) ) {
-        placedCard = playerHand.get(10-1); // 10-1 is just being used for readability
-        placedCard.dontScale = true;
-        playerHand.remove(10-1);
+      if (key!=' ') {
+        if ( (playerHand.get(10-1).colour == placedCard.colour) || (playerHand.get(10-1).number == placedCard.number) ) {
+          placedCard = playerHand.get(10-1); // 10-1 is just being used for readability
+          placedCard.dontScale = true;
+          playerHand.remove(10-1);
+        }
       }
     }
   } catch(Exception e) {print(e);}
