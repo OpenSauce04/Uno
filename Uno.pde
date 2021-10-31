@@ -46,7 +46,6 @@ void draw() {
   
   if (botTurn && placedCardAnimTimer <= -60) {
     botPlay();
-    botTurn = false;
   }
   if (win && !lose) {
     fill(0);
