@@ -10,6 +10,7 @@ ArrayList<Card> playerHand = generateHand();
 ArrayList<Card> botHand = generateHand();
 boolean win = false;
 boolean lose = false;
+boolean botTurn = false;
 void setup() {
   size(1200, 800, P2D);
   frameRate(60);
@@ -43,7 +44,10 @@ void draw() {
   }
   previousPlacedCard.drawCardPlacementAnim(int(width/2 - defaultCardWidth/2), int(height/2 - defaultCardHeight/2));
   
-
+  if (botTurn && placedCardAnimTimer <= -60) {
+    botPlay();
+    botTurn = false;
+  }
   if (win && !lose) {
     fill(0);
     text("You Win!", width/2, height/2);
@@ -56,14 +60,14 @@ void draw() {
 }
 
 void keyReleased() {
-  if (!win && !lose) {
+  if (!win && !lose && !botTurn) {
     try {
       int(str(key));
       if (int(str(key)) != 0) {
         if ( (playerHand.get(int(str(key))-1).colour == placedCard.colour) || (playerHand.get(int(str(key))-1).number == placedCard.number) ) {
           placeCard(playerHand.get(int(str(key))-1));
           playerHand.remove(int(str(key))-1);
-          botPlay();
+          botTurn = true;
         }
       } else { // 0 key = 10th card
         if (key!=' ') {
