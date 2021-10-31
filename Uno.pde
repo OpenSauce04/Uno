@@ -11,6 +11,8 @@ ArrayList<Card> botHand = generateHand();
 boolean win = false;
 boolean lose = false;
 boolean botTurn = false;
+
+// All of this stuff pretty much reads like English --{
 void setup() {
   size(1200, 800, P2D);
   frameRate(60);
@@ -43,9 +45,12 @@ void draw() {
   } else {
     win = true;
   }
+  // }--
+
+  // Draw the temporary card used for the placement animation (if applicable)
   previousPlacedCard.drawCardPlacementAnim(int(width/2 - defaultCardWidth/2), int(height/2 - defaultCardHeight/2));
   
-  if (botTurn && placedCardAnimTimer <= -60) {
+  if (botTurn && placedCardAnimTimer <= -60) { // If it is the bot's turn and it has been more than 60 frames since the card placement animation finished
     botPlay();
   }
   if (win && !lose) {
@@ -81,7 +86,7 @@ void keyReleased() {
     if (key==' ') { // Pick up a card
       switch(cardNo) {
         case 9:
-          // Draw guarenteed placeable card
+          // Pull guarenteed placeable card
           playerHand.add(generateCard());
           if (round(random(1)) == 1) {
             playerHand.get(9).colour = placedCard.colour;
@@ -90,10 +95,10 @@ void keyReleased() {
           }
           break;
         case 10:
-          // Draw no card
+          // Pull no card: the player's hand is full
           break;
         default:
-          // Draw card normally
+          // Pull card normally
           playerHand.add(generateCard());
       }
     }
