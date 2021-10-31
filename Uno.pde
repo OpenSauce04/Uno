@@ -4,6 +4,8 @@ float t;
 int cardNo;
 int textSize = 60;
 Card placedCard = generateCard();
+Card previousPlacedCard = placedCard;
+int placedCardAnimTimer = 0;
 ArrayList<Card> playerHand = generateHand();
 ArrayList<Card> botHand = generateHand();
 boolean win = false;
@@ -39,6 +41,7 @@ void draw() {
   } else {
     win = true;
   }
+  previousPlacedCard.drawCardPlacementAnim(int(width/2 - defaultCardWidth/2), int(height/2 - defaultCardHeight/2));
   
 
   if (win && !lose) {
@@ -58,8 +61,7 @@ void keyReleased() {
       int(str(key));
       if (int(str(key)) != 0) {
         if ( (playerHand.get(int(str(key))-1).colour == placedCard.colour) || (playerHand.get(int(str(key))-1).number == placedCard.number) ) {
-          placedCard = playerHand.get(int(str(key))-1);
-          placedCard.dontScale = true;
+          placeCard(playerHand.get(int(str(key))-1));
           playerHand.remove(int(str(key))-1);
           botPlay();
         }
