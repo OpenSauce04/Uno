@@ -1,9 +1,9 @@
 class Card {
   int number;
   String colour;
-  boolean dontScale;
+  boolean dontScale; // Forces the card to use the "default" variants of width and height; Used exclusively for placed card
   
-  int cardTransparency;
+  int cardTransparency; // Used exclusively for card placement animation
   
   Card (int _number, String _colour, boolean _dontScale) {
     number = _number;
@@ -26,6 +26,7 @@ class Card {
         break;
     }
     float drawWidth, drawHeight, drawCardNo;
+    // Check to see if the card should be scaled or not, and apply the appropriate values
     if (!dontScale) {
       drawWidth = cardWidth;
       drawHeight = cardHeight;
@@ -35,21 +36,24 @@ class Card {
       drawHeight = drawWidth * 1.4;
       drawCardNo = 7;
     }
+
     stroke(0);
-    rect(x, y, drawWidth, drawHeight, 15);
+    rect(x, y, drawWidth, drawHeight, 15); // Card base
     fill(255, 255, 255);
+
     stroke(255);
     pushMatrix();
     translate(x+42, y+10);
     shearX(-PI/10.0);
-    ellipse(-(max(drawCardNo, 7)-7)*3, 0, drawWidth-20, drawHeight-20);
+    ellipse(-(max(drawCardNo, 7)-7)*3, 0, drawWidth-20, drawHeight-20); // White sheared oval thingy in the middle
     popMatrix();
+
     fill(0);
-    text(number, x + (drawWidth/2), y + (drawHeight/2) + (textSize/4));
+    text(number, x + (drawWidth/2), y + (drawHeight/2) + (textSize/4)); // Card number
   }
 
 
-  void drawCardPlacementAnim(int x, int y) {
+  void drawCardPlacementAnim(int x, int y) { // Draws the temporary card used in the fade effect of the card placement animation
     cardTransparency = placedCardAnimTimer * (255/60);
     
     //print(placedCardAnimTimer);
@@ -79,8 +83,10 @@ class Card {
       drawHeight = drawWidth * 1.4;
       drawCardNo = 7;
     }
+
     stroke(0, cardTransparency);
     rect(x, y, drawWidth, drawHeight, 15);
+
     fill(255, 255, 255, cardTransparency);
     stroke(255, cardTransparency);
     pushMatrix();
@@ -88,6 +94,7 @@ class Card {
     shearX(-PI/10.0);
     ellipse(-(max(drawCardNo, 7)-7)*3, 0, drawWidth-20, drawHeight-20);
     popMatrix();
+
     fill(0, cardTransparency);
     text(number, x + (drawWidth/2), y + (drawHeight/2) + (textSize/4));
     
@@ -95,7 +102,7 @@ class Card {
   }
 
 
-  void drawCardMystery(int x, int y) {
+  void drawCardMystery(int x, int y) { // Basically the same as drawCard() Except it hides the colour and number of the card
     fill(50);
     float drawWidth, drawHeight, drawCardNo;
     if (!dontScale) {
@@ -107,8 +114,10 @@ class Card {
       drawHeight = drawWidth * 1.4;
       drawCardNo = 7;
     }
+
     stroke(0);
     rect(x, y, drawWidth, drawHeight, 15);
+
     fill(255, 255, 255);
     stroke(255);
     pushMatrix();
@@ -116,6 +125,7 @@ class Card {
     shearX(-PI/10.0);
     ellipse(-(max(drawCardNo, 7)-7)*3, 0, drawWidth-20, drawHeight-20);
     popMatrix();
+
     fill(0);
     text('?', x + (drawWidth/2), y + (drawHeight/2) + (textSize/4));
   }

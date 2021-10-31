@@ -1,11 +1,11 @@
 int cardPadding = 20;
-float cardWidth, cardHeight, defaultCardWidth, defaultCardHeight;
+float cardWidth, cardHeight, defaultCardWidth, defaultCardHeight; // The default card height and width are used exclusively for the placed card
 float t;
-int cardNo;
+int cardNo; // "Card Number")
 int textSize = 60;
 Card placedCard = generateCard();
-Card previousPlacedCard = placedCard;
-int placedCardAnimTimer = 0;
+Card previousPlacedCard = placedCard; // Used exclusively for the card placement animation
+int placedCardAnimTimer = 0; // Fadeout timer used for placement animation and for bot behaviour delay; Unit is frames
 ArrayList<Card> playerHand = generateHand();
 ArrayList<Card> botHand = generateHand();
 boolean win = false;
@@ -60,9 +60,8 @@ void draw() {
 }
 
 void keyReleased() {
-  if (!win && !lose && !botTurn && placedCardAnimTimer <= 0) {
+  if (!win && !lose && !botTurn && placedCardAnimTimer <= 0) { // If the player should be able to actually control the game
     try {
-      int(str(key));
       if (int(str(key)) != 0) {
         if ( (playerHand.get(int(str(key))-1).colour == placedCard.colour) || (playerHand.get(int(str(key))-1).number == placedCard.number) ) {
           placeCard(playerHand.get(int(str(key))-1));
@@ -78,8 +77,8 @@ void keyReleased() {
           }
         }
       }
-    } catch(Exception e) {print(e);}
-    if (key==' ') {
+    } catch(Exception e) {print(e+'\n');} // The player pressed the key for a card that they don't have; Do nothing 
+    if (key==' ') { // Pick up a card
       switch(cardNo) {
         case 9:
           // Draw guarenteed placeable card
@@ -98,11 +97,12 @@ void keyReleased() {
           playerHand.add(generateCard());
       }
     }
-    if (key=='`') {
-      playerHand.remove(0);
-    }
-    if (key=='#') {
-      botHand.remove(0);
-    }
+
+    //if (key=='`') { // Debug stuff ignore this
+    //  playerHand.remove(0);
+    //}
+    //if (key=='#') {
+    //  botHand.remove(0);
+    //}
   }
 }
