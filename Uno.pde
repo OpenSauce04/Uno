@@ -1,7 +1,7 @@
 int cardPadding = 20;
 float cardWidth, cardHeight, defaultCardWidth, defaultCardHeight; // The default card height and width are used exclusively for the placed card
 float t;
-int cardNo; // "Card Number")
+int cardNo; // "Card Number"
 int textSize = 60;
 Card placedCard = generateCard();
 Card previousPlacedCard = placedCard; // Used exclusively for the card placement animation
