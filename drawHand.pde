@@ -12,7 +12,7 @@ void drawPlayerHand(ArrayList<Card> cards) {
 
 void drawBotHand(ArrayList<Card> cards) {
   for (int x = 0; x < botHand.size(); x++) {
-    cards.get(x).drawCard((width/max(botHand.size(), 7)) * x + (cardPadding/2), -int(cardHeight)/5); // Draw the card itself
+    cards.get(x).drawCardMystery((width/max(botHand.size(), 7)) * x + (cardPadding/2), -int(cardHeight)/5); // Draw the card itself
   }
   
    if (!botTurn || win || lose) {
