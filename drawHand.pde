@@ -15,7 +15,7 @@ void drawBotHand(ArrayList<Card> cards) {
     cards.get(x).drawCardMystery((width/max(botHand.size(), 7)) * x + (cardPadding/2), -int(cardHeight)/5); // Draw the card itself
   }
   
-   if (!botTurn || win || lose) {
+  if (!botTurn || win || lose) {
     fill(255, 130);
     rect(0, 0, width, (height/5)*2); // Makes the player's cards slightly transparent when they are unable to play
   }

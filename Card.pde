@@ -74,15 +74,11 @@ class Card {
         break;
     }
     float drawWidth, drawHeight, drawCardNo;
-    if (!dontScale) {
-      drawWidth = cardWidth;
-      drawHeight = cardHeight;
-      drawCardNo = cardNo;
-    } else {
-      drawWidth = width/7 - cardPadding;
-      drawHeight = drawWidth * 1.4;
-      drawCardNo = 7;
-    }
+    // Because this is always used for the card placement animation, it always uses the default card size values
+    drawWidth = width/7 - cardPadding;
+    drawHeight = drawWidth * 1.4;
+    drawCardNo = 7;
+    
 
     stroke(0, cardTransparency);
     rect(x, y, drawWidth, drawHeight, 15);
@@ -108,7 +104,7 @@ class Card {
     if (!dontScale) {
       drawWidth = cardWidth;
       drawHeight = cardHeight;
-      drawCardNo = cardNo;
+      drawCardNo = botHand.size();
     } else {
       drawWidth = width/7 - cardPadding;
       drawHeight = drawWidth * 1.4;
