@@ -60,7 +60,7 @@ void draw() {
 }
 
 void keyReleased() {
-  if (!win && !lose && !botTurn) {
+  if (!win && !lose && !botTurn && placedCardAnimTimer <= 0) {
     try {
       int(str(key));
       if (int(str(key)) != 0) {
