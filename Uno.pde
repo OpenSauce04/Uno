@@ -82,7 +82,7 @@ void keyReleased() {
           }
         }
       }
-    } catch(Exception e) {print(e+'\n');} // The player pressed the key for a card that they don't have; Do nothing 
+    } catch(Exception e) {print(e+"\n");} // The player pressed the key for a card that they don't have; Do nothing 
     if (key==' ') { // Pick up a card
       switch(cardNo) {
         case 9:
