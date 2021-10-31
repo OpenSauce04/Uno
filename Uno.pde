@@ -29,7 +29,8 @@ void draw() {
   cardHeight = cardWidth * 1.4;
 
   background(255);
-  drawHand(playerHand);
+  drawPlayerHand(playerHand);
+  drawBotHand(botHand);
   fill(200);
   stroke(0);
   if (botHand.size()==0) {
