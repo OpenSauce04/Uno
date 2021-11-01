@@ -1,7 +1,8 @@
 int cardPadding = 20;
-float cardWidth, cardHeight, defaultCardWidth, defaultCardHeight; // The default card height and width are used exclusively for the placed card
+float playerCardWidth, playerCardHeight, botCardWidth, botCardHeight, defaultCardWidth, defaultCardHeight; // The default card height and width are used exclusively for the placed card
 float t;
-int cardNo; // "Card Number"
+int playerCardNo; // "Card Number"
+int botCardNo;
 int textSize = 60;
 Card placedCard = generateCard();
 Card previousPlacedCard = placedCard; // Used exclusively for the card placement animation
@@ -20,25 +21,29 @@ void setup() {
   textAlign(CENTER);
   textSize(textSize);
   
-  defaultCardWidth = width/max(cardNo, 7) - cardPadding;
+  defaultCardWidth = width/7 - cardPadding;
   defaultCardHeight = defaultCardWidth * 1.4;
   placedCard.dontScale = true;
 }
 
 void draw() {
-  cardNo = playerHand.size();
-  cardWidth = width/max(cardNo, 7) - cardPadding;
-  cardHeight = cardWidth * 1.4;
+  playerCardNo = playerHand.size();
+  playerCardWidth = width/max(playerCardNo, 7) - cardPadding;
+  playerCardHeight = playerCardWidth * 1.4;
+
+  botCardNo = botHand.size();
+  botCardWidth = width/max(botCardNo, 7) - cardPadding;
+  botCardHeight = botCardWidth * 1.4;
 
   background(255);
   drawPlayerHand(playerHand);
   drawBotHand(botHand);
   fill(200);
   stroke(0);
-  if (botHand.size()==0) {
+  if (botCardNo==0) {
     lose = true;
   }
-  if ((cardNo != 0)) {
+  if ((playerCardNo != 0)) {
     if (!lose) {
       placedCard.drawCard(int(width/2 - defaultCardWidth/2), int(height/2 - defaultCardHeight/2));
     }
@@ -84,7 +89,7 @@ void keyReleased() {
       }
     } catch(Exception e) {print(e+"\n");} // The player pressed the key for a card that they don't have; Do nothing 
     if (key==' ') { // Pick up a card
-      switch(cardNo) {
+      switch(playerCardNo) {
         case 9:
           // Pull guarenteed placeable card
           playerHand.add(generateCard());

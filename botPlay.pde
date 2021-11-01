@@ -5,7 +5,7 @@ int botHesitation = 0; // The number of frames the bot will wait before making a
 void botPlay() {
   if (max(botHesitation, 0) == 0) {
     boolean ableToPlace = false;
-    for (int x = 0; x<botHand.size(); x++) { // Go through the bot's entire hand
+    for (int x = 0; x<botCardNo; x++) { // Go through the bot's entire hand
       if ((botHand.get(x).colour == placedCard.colour) || (botHand.get(x).number == placedCard.number)) { // If the currently inspected card is placeable: Place it
         placeCard(botHand.get(x));
         botHand.remove(x);
@@ -16,7 +16,7 @@ void botPlay() {
     }
 
     if (ableToPlace == false) { // The bot has no cards it can place: Pick up
-      switch(botHand.size()) {
+      switch(botCardNo) {
           case 9:
             // Pull guarenteed placeable card
             botHand.add(generateCard());

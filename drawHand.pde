@@ -1,7 +1,7 @@
 void drawPlayerHand(ArrayList<Card> cards) {
-  for (int x = 0; x < cardNo; x++) {
-    cards.get(x).drawCard((width/max(cardNo, 7)) * x + (cardPadding/2), height - int(cardHeight) + int(cardHeight)/5); // Draw the card itself
-    text(x+1, (width/max(cardNo, 7)) * x + (cardPadding/2) + (cardWidth/2), height - int(cardHeight) + int(cardHeight)/5 - 10); // Draw the number pressed to use the card
+  for (int x = 0; x < playerCardNo; x++) {
+    cards.get(x).drawCard((width/max(playerCardNo, 7)) * x + (cardPadding/2), height - int(playerCardHeight) + int(playerCardHeight)/5); // Draw the card itself
+    text(x+1, (width/max(playerCardNo, 7)) * x + (cardPadding/2) + (playerCardWidth/2), height - int(playerCardHeight) + int(playerCardHeight)/5 - 10); // Draw the number pressed to use the card
   }
   
   if (placedCardAnimTimer > 0 || botTurn || win || lose) {
@@ -11,8 +11,8 @@ void drawPlayerHand(ArrayList<Card> cards) {
 }
 
 void drawBotHand(ArrayList<Card> cards) {
-  for (int x = 0; x < botHand.size(); x++) {
-    cards.get(x).drawCardMystery((width/max(botHand.size(), 7)) * x + (cardPadding/2), -int(cardHeight)/5); // Draw the card itself
+  for (int x = 0; x < botCardNo; x++) {
+    cards.get(x).drawCardMystery((width/max(botCardNo, 7)) * x + (cardPadding/2), -int(playerCardHeight)/5); // Draw the card itself
   }
   
   if (!botTurn || win || lose) {

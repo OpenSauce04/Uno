@@ -31,9 +31,9 @@ class Card {
 
     // Check to see if the card should be scaled or not, and apply the appropriate values
     if (!dontScale) {
-      drawWidth = cardWidth;
-      drawHeight = cardHeight;
-      drawCardNo = cardNo;
+      drawWidth = playerCardWidth;
+      drawHeight = playerCardHeight;
+      drawCardNo = playerCardNo;
     } else {
       drawWidth = width/7 - cardPadding;
       drawHeight = drawWidth * 1.4;
@@ -106,18 +106,12 @@ class Card {
   }
 
 
-  void drawCardMystery(int x, int y) { // Basically the same as drawCard() Except it hides the colour and number of the card
+  void drawCardMystery(int x, int y) { // Basically the same as drawCard() Except it hides the colour and number of the card; This is only ever used to draw the bot's cards
     fill(50);
     float drawWidth, drawHeight, drawCardNo;
-    if (!dontScale) {
-      drawWidth = cardWidth;
-      drawHeight = cardHeight;
-      drawCardNo = botHand.size(); // Because "cardNo" tracks the PLAYER's card count, we grab the bot's card count directly instead
-    } else {
-      drawWidth = width/7 - cardPadding;
-      drawHeight = drawWidth * 1.4;
-      drawCardNo = 7;
-    }
+    drawWidth = botCardWidth;
+    drawHeight = botCardHeight;
+    drawCardNo = botCardNo;
 
     // Card base
     stroke(0);
